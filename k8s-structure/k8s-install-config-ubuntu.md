@@ -23,3 +23,19 @@ sudo apt update -y
 ```
 sudo apt install -y kubelet kubeadm kubectl
 ```
+### Install Container Runtime
+```
+sudo apt install -y containerd
+```
+```
+sudo mkdir -p /etc/containerd
+```
+```
+containerd config default | sudo tee /etc/containerd/config.toml
+```
+```
+sudo systemctl restart containerd
+```
+```
+sudo systemctl enable containerd
+```
