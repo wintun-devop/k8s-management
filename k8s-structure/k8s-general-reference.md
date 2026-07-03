@@ -10,3 +10,7 @@ https://blog.stackademic.com/everything-you-need-to-know-for-the-cks-exam-topics
 ```
 https://privatedevops.com/articles/deploying-nextjs-16-kubernetes-production-guide
 ```
+### Diagnose Kubernetes Control Plane Performance Issues with AWS DevOps Agent
+```
+https://aws.amazon.com/blogs/containers/diagnose-kubernetes-control-plane-performance-issues-with-aws-devops-agent/
+```
