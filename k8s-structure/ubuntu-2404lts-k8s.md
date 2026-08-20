@@ -62,7 +62,34 @@ EOF
 ```
 sudo sysctl --system
 ```
-
+- containerd installed
+```
+sudo apt update -y
+```
+```
+sudo apt upgrade -y
+```
+```
+sudo apt install -y containerd
+```
+- Generate default config
+```
+sudo mkdir -p /etc/containerd
+```
+```
+sudo containerd config default | sudo tee /etc/containerd/config.toml
+```
+- Use systemd cgroup driver
+```
+sudo sed -i 's/SystemdCgroup = false/SystemdCgroup = true/' /etc/containerd/config.toml
+```
+- Restart containerd
+```
+sudo systemctl restart containerd
+```
+```
+sudo systemctl enable containerd
+```
 ### worker node
 ```
 sudo apt update && sudo apt install -y wget curl make unzip network-manager gcc net-tools lsb-release ca-certificates apt-transport-https gnupg2 software-properties-common
