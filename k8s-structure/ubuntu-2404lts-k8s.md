@@ -1,6 +1,6 @@
 ### master node
 ```
-sudo apt update && sudo apt install -y wget curl make unzip network-manager gcc net-tools lsb-release ca-certificates apt-transport-https gnupg2 software-properties-common
+sudo apt update && sudo apt install -y wget curl make unzip network-manager gcc net-tools lsb-release ca-certificates apt-transport-https gnupg2 software-properties-common gpg
 ```
 - ubuntu static ip
 ```
@@ -89,6 +89,33 @@ sudo systemctl restart containerd
 ```
 ```
 sudo systemctl enable containerd
+```
+- Add Kubernetes apt repo
+```
+sudo mkdir -p /etc/apt/keyrings
+```
+```
+curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.30/deb/Release.key | \
+```
+```
+sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+```
+```
+echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] \
+https://pkgs.k8s.io/core:/stable:/v1.30/deb/ /" | \
+```
+```
+sudo tee /etc/apt/sources.list.d/kubernetes.list
+```
+```
+sudo apt update
+```
+- Install kubelet, kubeadm, kubectl
+```
+sudo apt install -y kubelet kubeadm kubectl
+```
+```
+sudo apt-mark hold kubelet kubeadm kubectl
 ```
 ### worker node
 ```
