@@ -102,7 +102,7 @@ sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
 ```
 ```
 echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] \
-https://pkgs.k8s.io/core:/stable:/v1.30/deb/ /" | \
+https://pkgs.k8s.io/core:/stable:/v1.36/deb/ /" | \
 ```
 ```
 sudo tee /etc/apt/sources.list.d/kubernetes.list
@@ -180,5 +180,60 @@ EOF
 ```
 ```
 sudo sysctl --system
+```
+- containerd installed
+```
+sudo apt update -y
+```
+```
+sudo apt upgrade -y
+```
+```
+sudo apt install -y containerd
+```
+- Generate default config
+```
+sudo mkdir -p /etc/containerd
+```
+```
+sudo containerd config default | sudo tee /etc/containerd/config.toml
+```
+- Use systemd cgroup driver
+```
+sudo sed -i 's/SystemdCgroup = false/SystemdCgroup = true/' /etc/containerd/config.toml
+```
+- Restart containerd
+```
+sudo systemctl restart containerd
+```
+```
+sudo systemctl enable containerd
+```
+- Add Kubernetes apt repo
+```
+sudo mkdir -p /etc/apt/keyrings
+```
+```
+curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.30/deb/Release.key | \
+```
+```
+sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+```
+```
+echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] \
+https://pkgs.k8s.io/core:/stable:/v1.36/deb/ /" | \
+```
+```
+sudo tee /etc/apt/sources.list.d/kubernetes.list
+```
+```
+sudo apt update
+```
+- Install kubelet, kubeadm, kubectl
+```
+sudo apt install -y kubelet kubeadm kubectl
+```
+```
+sudo apt-mark hold kubelet kubeadm kubectl
 ```
 
