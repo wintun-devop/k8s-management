@@ -252,4 +252,20 @@ sudo apt install -y kubelet kubeadm kubectl
 ```
 sudo apt-mark hold kubelet kubeadm kubectl
 ```
+- To connect k8s worker to master,create token on master
+```
+kubeadm token create --print-join-command
+```
+- join to master
+- (192.168.1.85:6443 is master node ip)
+```
+sudo kubeadm join 192.168.1.85:6443 --token <TOKEN> \
+    --discovery-token-ca-cert-hash sha256:<HASH> \
+    --cri-socket unix:///run/containerd/containerd.sock
+```
+```
+sudo kubeadm join 192.168.1.85:6443 --token tg4jyv.0faxrmt9qdq7ylbq \
+--discovery-token-ca-cert-hash sha256:a22752d5dc63e0d2d1fa2015874565ce557b43979919c7e2587b412f5a837b6e \
+--cri-socket unix:///run/containerd/containerd.sock
+```
 
