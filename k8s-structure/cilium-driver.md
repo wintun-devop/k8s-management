@@ -14,3 +14,16 @@ sudo tar xzvfC cilium-linux-amd64.tar.gz /usr/local/bin
 ```
 rm cilium-linux-amd64.tar.gz{,.sha256sum}
 ```
+```
+cilium version --client
+```
+### 
+```
+kubectl delete -f https://raw.githubusercontent.com/flannel-io/flannel/master/Documentation/kube-flannel.yml
+```
+```
+sudo rm -rf /etc/cni/net.d/*
+```
+```
+sudo rm -rf /opt/cni/bin/*
+```
