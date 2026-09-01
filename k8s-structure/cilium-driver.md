@@ -17,7 +17,7 @@ rm cilium-linux-amd64.tar.gz{,.sha256sum}
 ```
 cilium version --client
 ```
-### 
+### Remove Any Existing CNI
 ```
 kubectl delete -f https://raw.githubusercontent.com/flannel-io/flannel/master/Documentation/kube-flannel.yml
 ```
