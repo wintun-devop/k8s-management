@@ -27,3 +27,14 @@ sudo rm -rf /etc/cni/net.d/*
 ```
 sudo rm -rf /opt/cni/bin/*
 ```
+### install cilium driver
+```
+cilium install --version 1.20.1 --set kubeProxyReplacement=true
+```
+```
+sudo systemctl restart containerd
+```
+```
+sudo systemctl restart kubelet
+```
+
