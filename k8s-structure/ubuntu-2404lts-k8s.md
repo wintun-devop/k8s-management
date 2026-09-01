@@ -117,6 +117,22 @@ sudo apt install -y kubelet kubeadm kubectl
 ```
 sudo apt-mark hold kubelet kubeadm kubectl
 ```
+- run on master node
+```
+sudo kubeadm reset -f
+```
+```
+sudo kubeadm init --pod-network-cidr=10.111.0.0/16 --cri-socket unix:///run/containerd/containerd.sock
+```
+```
+mkdir -p $HOME/.kube
+```
+```
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+```
+```
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+```
 ### worker node
 ```
 sudo apt update && sudo apt install -y wget curl make unzip network-manager gcc net-tools lsb-release ca-certificates apt-transport-https gnupg2 software-properties-common
