@@ -269,3 +269,21 @@ sudo kubeadm join 192.168.1.85:6443 --token tg4jyv.0faxrmt9qdq7ylbq \
 --cri-socket unix:///run/containerd/containerd.sock
 ```
 
+### Fixed Swap Issue on worker node
+```
+sudo swapoff -a
+```
+```
+sudo sed -i '/swap.img/s/^/#/' /etc/fstab
+```
+```
+cat /etc/fstab | grep swap
+```
+```
+sudo systemctl restart kubelet
+```
+```
+sudo systemctl status kubelet
+```
+
+
