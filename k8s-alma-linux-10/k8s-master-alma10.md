@@ -149,6 +149,7 @@ kubectl -n kube-system get pods -l k8s-app=cilium
 ```
 kubectl get nodes -o wide
 ```
+```
 kubectl get pods -n kube-system
 ```
 - Connectivity Test
