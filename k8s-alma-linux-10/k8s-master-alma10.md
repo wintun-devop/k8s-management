@@ -1,4 +1,8 @@
 ### k8s master System Prerequisites
+- prerequire pacakges
+```
+dnf install -y gcc net-tools curl wget unzip
+```
 - Disable swap
 ```
 sudo swapoff -a
